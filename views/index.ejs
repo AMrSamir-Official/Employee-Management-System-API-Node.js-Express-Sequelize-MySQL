@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .department-badge {
+            background: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+        .salary {
+            font-weight: bold;
+            color: #28a745;
+        }
+        .api-links {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e9ecef;
+            border-radius: 6px;
+        }
+        .api-links h3 {
+            margin-top: 0;
+        }
+        .api-links a {
+            display: inline-block;
+            margin: 5px 10px 5px 0;
+            padding: 8px 12px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .api-links a:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏢 Employee Management System</h1>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number"><%= employees.length %></div>
+                <div>Total Employees</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">
+                    <%= [...new Set(employees.map(emp => emp.department ? emp.department.name : 'N/A'))].length %>
+                </div>
+                <div>Departments</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">
+                    $<%= employees.reduce((sum, emp) => sum + parseFloat(emp.salary || 0), 0).toLocaleString() %>
+                </div>
+                <div>Total Payroll</div>
+            </div>
+        </div>
+
+        <% if (employees.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th>Hire Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% employees.forEach(employee => { %>
+                <tr>
+                    <td><%= employee.id %></td>
+                    <td><%= employee.name %></td>
+                    <td><%= employee.email %></td>
+                    <td>
+                        <span class="department-badge">
+                            <%= employee.department ? employee.department.name : 'N/A' %>
+                        </span>
+                    </td>
+                    <td class="salary">$<%= parseFloat(employee.salary).toLocaleString() %></td>
+                    <td><%= employee.hire_date ? new Date(employee.hire_date).toLocaleDateString() : 'N/A' %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <% } else { %>
+        <p style="text-align: center; color: #666; font-size: 1.2em;">No employees found.</p>
+        <% } %>
+
+        <div class="api-links">
+            <h3>🔗 API Endpoints</h3>
+            <a href="/api/employees">View All Employees (JSON)</a>
+            <a href="/api/departments">View All Departments (JSON)</a>
+            <a href="/api/employees/export/csv">Export CSV</a>
+            <a href="/api/employees/export/pdf">Export PDF</a>
+            <a href="/health">Health Check</a>
+        </div>
+    </div>
+</body>
+</html>
