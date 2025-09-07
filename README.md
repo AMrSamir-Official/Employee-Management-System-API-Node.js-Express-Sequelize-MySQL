@@ -7,6 +7,17 @@ This project was built as part of a **Backend Developer Technical Assessment**.
 
 ---
 
+## Tech Stack
+- **Backend Framework:** Node.js + Express
+- **Database & ORM:** MySQL/MariaDB + Sequelize
+- **Authentication:** JWT (optional)
+- **Validation:** Joi
+- **Logging:** Winston
+- **Reporting:** PDFKit & CSV Writer
+- **View Engine (Bonus):** EJS
+
+---
+
 ## Core Features (Required by Assessment)
 - **Employee Management:** CRUD operations (Create, Read, Update, Delete) with validation
 - **Department Management:** Each employee belongs to a department (id, name)
@@ -73,8 +84,9 @@ cp .env.example .env
 CREATE DATABASE employee_management;
 
 # Run migrations and seeders
-npm run migrate
-npm run seed
+npm run db:migrate
+npm run db:seed
+
 
 # Start server
 npm run dev    # Development
@@ -136,3 +148,5 @@ CREATE TABLE employees (
 - Outputs to console and `logs/app.log`
 
 ---
+## License
+This project is licensed under the MIT License.
