@@ -70,7 +70,7 @@ project-root/
 ### Steps
 ```bash
 # Clone repository
-git clone <repository-url>
+git clone https://github.com/AMrSamir-Official/Employee-Management-System-API-Node.js-Express-Sequelize-MySQL
 cd employee-management-api
 
 # Install dependencies
