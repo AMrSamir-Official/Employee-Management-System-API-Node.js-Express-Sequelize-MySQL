@@ -9,7 +9,7 @@ This project was built as part of a **Backend Developer Technical Assessment**.
 
 ## Tech Stack
 - **Backend Framework:** Node.js + Express
-- **Database & ORM:** MySQL/MariaDB + Sequelize
+- **Database & ORM:** MySQL + Sequelize
 - **Authentication:** JWT (optional)
 - **Validation:** Joi
 - **Logging:** Winston
